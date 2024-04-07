@@ -1,0 +1,31 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@model TBL_MUSTERI
+@{
+    ViewBag.Title = "BringCustomer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2 class="mt-3">Update Customer</h2>
+
+
+@using (Html.BeginForm("UpdateCustomer", "Customer", FormMethod.Post))
+{
+
+    @Html.HiddenFor(x => x.id, new { @class = "form-control" })
+    <Label>Customer Name :</Label>
+    @Html.TextBoxFor(x => x.musteriadi, new { @class = "form-control" })
+    <Label>Customer Surname :</Label>
+    @Html.TextBoxFor(x => x.musterisoyadi, new { @class = "form-control" })
+    <Label>Customer City: </Label>
+    @Html.TextBoxFor(x => x.musterisehir, new { @class = "form-control" })
+    <Label>Customer Wallet : </Label>
+    @Html.TextBoxFor(x => x.musteribakiye, new { @class = "form-control" })
+    <Label>Customer Status :</Label>
+    @Html.TextBoxFor(x => x.status, new { @class = "form-control" })
+
+
+
+    <button style="margin-top:20px" class="mt-5 btn btn-success">UPDATE PRODUCT</button>
+
+}

@@ -1,0 +1,37 @@
+﻿@model MagazaUrunTakipSistemi.Models.Entity.TBL_URUN
+@{
+    ViewBag.Title = "NewProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2 class="mt-3">Add New Product</h2>
+
+
+<form method="post" class="form-group mt-4">
+
+
+    <label>Product Name : </label>
+    @Html.TextBoxFor(x => x.urunadi, new { @class = "form-control" })
+
+    <label>Product Brand : </label>
+    @Html.TextBoxFor(x => x.urunmarka, new { @class = "form-control" })
+
+    <label>Product Inventory : </label>
+    @Html.TextBoxFor(x => x.stok, new { @class = "form-control" })
+
+    <label>Product Buying Price </label>
+    @Html.TextBoxFor(x => x.alisfiyat, new { @class = "form-control" })
+
+    <label>Product Sales Price : </label>
+    @Html.TextBoxFor(x => x.satisfiyat, new { @class = "form-control" })
+
+    <label>Product Category Name : </label>
+    @Html.DropDownListFor(x => x.TBL_KATEGORI.id, (List<SelectListItem>)ViewBag.drop, new { @class = "form-control" })
+    @*@Html.TextBoxFor(x => x.kategoriid, new { @class = "form-control" })*@
+
+
+    <button class="mt-5 btn btn-success" style="margin-top:16px">ADD PRODUCT</button>
+
+</form>
+

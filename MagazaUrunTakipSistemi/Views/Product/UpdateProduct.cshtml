@@ -1,0 +1,33 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@model TBL_URUN
+@{
+    ViewBag.Title = "UpdateProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">Update Product</h2>
+
+
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post))
+{
+
+@Html.HiddenFor(x => x.id, new { @class = "form-control" })
+<Label>Product Name :</Label>
+@Html.TextBoxFor(x => x.urunadi, new { @class = "form-control" })
+<Label>Product Brand :</Label>
+@Html.TextBoxFor(x => x.urunmarka, new { @class = "form-control" })
+<Label>Product Inventory : </Label>
+@Html.TextBoxFor(x => x.stok, new { @class = "form-control" })
+<Label>Product Buying Price : </Label>
+@Html.TextBoxFor(x => x.alisfiyat, new { @class = "form-control" })
+<Label>Product Sales Price :</Label>
+@Html.TextBoxFor(x => x.satisfiyat, new { @class = "form-control" })
+<Label>Product Category Name : </Label>
+@*@Html.TextBoxFor(x => x.kategoriid, new { @class = "form-control" })*@
+@Html.DropDownListFor(x => x.TBL_KATEGORI.id, (List<SelectListItem>)ViewBag.ktg, new {@class="form-control"})
+
+
+<button style="margin-top:20px" class="mt-5 btn btn-success">UPDATE PRODUCT</button>
+
+}
+

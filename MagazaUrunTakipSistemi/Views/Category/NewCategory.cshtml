@@ -1,0 +1,23 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@model TBL_KATEGORI
+@{
+    ViewBag.Title = "NewCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">Add New Category</h2>
+
+
+<form action="NewCategory" method="post" class="form-group mt-4">
+
+    <label>Category Name : </label>
+    <input type="text" name="kategoriad" value="" placeholder="New Category Name.." class="mt-1 form-control" style="margin-bottom:12px" />
+    <div>
+        @Html.ValidationMessageFor(m => m.kategoriad, "", new { @style = "colo:red" })
+    </div>
+
+    <div>
+        <button class="mt-5 btn btn-success" style="margin-top:24px">ADD CATEGORY</button>
+    </div>
+
+</form>

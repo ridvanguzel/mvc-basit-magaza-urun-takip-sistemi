@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RG_MAGAZASTOKYONETIMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_KATEGORI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriad" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_MUSTERI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="musteriadi" Type="varchar" MaxLength="30" />
+          <Property Name="musterisoyadi" Type="varchar" MaxLength="30" />
+          <Property Name="musterisehir" Type="varchar" MaxLength="18" />
+          <Property Name="musteribakiye" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONAL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personalad" Type="varchar" MaxLength="30" />
+          <Property Name="personalsoyad" Type="varchar" MaxLength="30" />
+          <Property Name="personaldepartmant" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TBL_SATISLAR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urun" Type="int" />
+          <Property Name="personal" Type="int" />
+          <Property Name="musteri" Type="int" />
+          <Property Name="fiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TBL_URUN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="urunadi" Type="varchar" MaxLength="30" />
+          <Property Name="urunmarka" Type="varchar" MaxLength="30" />
+          <Property Name="stok" Type="smallint" />
+          <Property Name="alisfiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="satisfiyat" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="kategoriid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <Association Name="FK_TBL_SATISLAR_TBL_MUSTERI">
+          <End Role="TBL_MUSTERI" Type="Self.TBL_MUSTERI" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_PERSONAL">
+          <End Role="TBL_PERSONAL" Type="Self.TBL_PERSONAL" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PERSONAL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="personal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_URUN_TBL_KATEGORI">
+          <End Role="TBL_KATEGORI" Type="Self.TBL_KATEGORI" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEGORI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="kategoriid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RG_MAGAZASTOKYONETIMModelStoreContainer">
+          <EntitySet Name="TBL_KATEGORI" EntityType="Self.TBL_KATEGORI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_MUSTERI" EntityType="Self.TBL_MUSTERI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_PERSONAL" EntityType="Self.TBL_PERSONAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SATISLAR" EntityType="Self.TBL_SATISLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_URUN" EntityType="Self.TBL_URUN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MUSTERI" Association="Self.FK_TBL_SATISLAR_TBL_MUSTERI">
+            <End Role="TBL_MUSTERI" EntitySet="TBL_MUSTERI" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_PERSONAL" Association="Self.FK_TBL_SATISLAR_TBL_PERSONAL">
+            <End Role="TBL_PERSONAL" EntitySet="TBL_PERSONAL" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_URUN" Association="Self.FK_TBL_SATISLAR_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_URUN_TBL_KATEGORI" Association="Self.FK_TBL_URUN_TBL_KATEGORI">
+            <End Role="TBL_KATEGORI" EntitySet="TBL_KATEGORI" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RG_MAGAZASTOKYONETIMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_KATEGORI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_URUN_TBL_KATEGORI" FromRole="TBL_KATEGORI" ToRole="TBL_URUN" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBL_MUSTERI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="musteriadi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="musterisoyadi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="musterisehir" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="musteribakiye" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TBL_SATISLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_MUSTERI" FromRole="TBL_MUSTERI" ToRole="TBL_SATISLAR" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBL_PERSONAL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personalad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="personalsoyad" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="personaldepartmant" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBL_SATISLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_PERSONAL" FromRole="TBL_PERSONAL" ToRole="TBL_SATISLAR" />
+        </EntityType>
+        <EntityType Name="TBL_SATISLAR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urun" Type="Int32" />
+          <Property Name="personal" Type="Int32" />
+          <Property Name="musteri" Type="Int32" />
+          <Property Name="fiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBL_MUSTERI" Relationship="Self.FK_TBL_SATISLAR_TBL_MUSTERI" FromRole="TBL_SATISLAR" ToRole="TBL_MUSTERI" />
+          <NavigationProperty Name="TBL_PERSONAL" Relationship="Self.FK_TBL_SATISLAR_TBL_PERSONAL" FromRole="TBL_SATISLAR" ToRole="TBL_PERSONAL" />
+          <NavigationProperty Name="TBL_URUN" Relationship="Self.FK_TBL_SATISLAR_TBL_URUN" FromRole="TBL_SATISLAR" ToRole="TBL_URUN" />
+        </EntityType>
+        <EntityType Name="TBL_URUN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="urunadi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="urunmarka" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="stok" Type="Int16" />
+          <Property Name="alisfiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="satisfiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kategoriid" Type="Int32" />
+          <NavigationProperty Name="TBL_KATEGORI" Relationship="Self.FK_TBL_URUN_TBL_KATEGORI" FromRole="TBL_URUN" ToRole="TBL_KATEGORI" />
+          <NavigationProperty Name="TBL_SATISLAR" Relationship="Self.FK_TBL_SATISLAR_TBL_URUN" FromRole="TBL_URUN" ToRole="TBL_SATISLAR" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_TBL_URUN_TBL_KATEGORI">
+          <End Role="TBL_KATEGORI" Type="Self.TBL_KATEGORI" Multiplicity="0..1" />
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_KATEGORI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_URUN">
+              <PropertyRef Name="kategoriid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_MUSTERI">
+          <End Role="TBL_MUSTERI" Type="Self.TBL_MUSTERI" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_MUSTERI">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="musteri" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_PERSONAL">
+          <End Role="TBL_PERSONAL" Type="Self.TBL_PERSONAL" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_PERSONAL">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="personal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_SATISLAR_TBL_URUN">
+          <End Role="TBL_URUN" Type="Self.TBL_URUN" Multiplicity="0..1" />
+          <End Role="TBL_SATISLAR" Type="Self.TBL_SATISLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_URUN">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TBL_SATISLAR">
+              <PropertyRef Name="urun" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RG_MAGAZASTOKYONETIMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_KATEGORI" EntityType="Self.TBL_KATEGORI" />
+          <EntitySet Name="TBL_MUSTERI" EntityType="Self.TBL_MUSTERI" />
+          <EntitySet Name="TBL_PERSONAL" EntityType="Self.TBL_PERSONAL" />
+          <EntitySet Name="TBL_SATISLAR" EntityType="Self.TBL_SATISLAR" />
+          <EntitySet Name="TBL_URUN" EntityType="Self.TBL_URUN" />
+          <AssociationSet Name="FK_TBL_URUN_TBL_KATEGORI" Association="Self.FK_TBL_URUN_TBL_KATEGORI">
+            <End Role="TBL_KATEGORI" EntitySet="TBL_KATEGORI" />
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_MUSTERI" Association="Self.FK_TBL_SATISLAR_TBL_MUSTERI">
+            <End Role="TBL_MUSTERI" EntitySet="TBL_MUSTERI" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_PERSONAL" Association="Self.FK_TBL_SATISLAR_TBL_PERSONAL">
+            <End Role="TBL_PERSONAL" EntitySet="TBL_PERSONAL" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_SATISLAR_TBL_URUN" Association="Self.FK_TBL_SATISLAR_TBL_URUN">
+            <End Role="TBL_URUN" EntitySet="TBL_URUN" />
+            <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RG_MAGAZASTOKYONETIMModelStoreContainer" CdmEntityContainer="RG_MAGAZASTOKYONETIMEntities">
+          <EntitySetMapping Name="TBL_KATEGORI">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_KATEGORI">
+              <MappingFragment StoreEntitySet="TBL_KATEGORI">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategoriad" ColumnName="kategoriad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_MUSTERI">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_MUSTERI">
+              <MappingFragment StoreEntitySet="TBL_MUSTERI">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="musteriadi" ColumnName="musteriadi" />
+                <ScalarProperty Name="musterisoyadi" ColumnName="musterisoyadi" />
+                <ScalarProperty Name="musterisehir" ColumnName="musterisehir" />
+                <ScalarProperty Name="musteribakiye" ColumnName="musteribakiye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_PERSONAL">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_PERSONAL">
+              <MappingFragment StoreEntitySet="TBL_PERSONAL">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="personalad" ColumnName="personalad" />
+                <ScalarProperty Name="personalsoyad" ColumnName="personalsoyad" />
+                <ScalarProperty Name="personaldepartmant" ColumnName="personaldepartmant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SATISLAR">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_SATISLAR">
+              <MappingFragment StoreEntitySet="TBL_SATISLAR">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urun" ColumnName="urun" />
+                <ScalarProperty Name="personal" ColumnName="personal" />
+                <ScalarProperty Name="musteri" ColumnName="musteri" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_URUN">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_URUN">
+              <MappingFragment StoreEntitySet="TBL_URUN">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urunadi" ColumnName="urunadi" />
+                <ScalarProperty Name="urunmarka" ColumnName="urunmarka" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="alisfiyat" ColumnName="alisfiyat" />
+                <ScalarProperty Name="satisfiyat" ColumnName="satisfiyat" />
+                <ScalarProperty Name="kategoriid" ColumnName="kategoriid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

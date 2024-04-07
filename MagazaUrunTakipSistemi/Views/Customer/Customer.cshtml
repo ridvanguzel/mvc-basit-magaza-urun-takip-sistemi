@@ -1,0 +1,59 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@using PagedList.Mvc;
+@using PagedList;
+@model PagedList.IPagedList<TBL_MUSTERI>
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">CUSTOMERS</h2>
+
+<table class="table table-bordered">
+
+
+    <thead>
+        <tr>
+            <th>CUSTOMER ID</th>
+            <th>CUSTOMER NAME</th>
+            <th>CUSTOMER SURNAME</th>
+            <th>CUSTOMER CITY</th>
+            <th>CUSTOMER WALLET</th>
+            <th>CUSTOMER STATUS</th>
+            <th>DELETE</th>
+            <th>ACTIVE</th>
+            <th>UPDATE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.id</td>
+                <td>@item.musteriadi</td>
+                <td>@item.musterisoyadi</td>
+                <td>@item.musterisehir</td>
+                <td>@item.musteribakiye</td>
+                <td>@item.status</td>
+                <td><a href="/Customer/DeleteCustomer/@item.id" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/Customer/ActiveCustomer/@item.id" class="btn btn-success">ACTIVE</a></td>
+                <td><a href="/Customer/BringCustomer/@item.id" class="btn btn-warning">UPDATE</a></td>
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Customer", new{sayfa})) 
+@*// sayfalamak için bunu kullanırız*@
+
+<a href="/Customer/NewCustomer" class="btn btn-success">ADD NEW CUSTOMER</a>
+

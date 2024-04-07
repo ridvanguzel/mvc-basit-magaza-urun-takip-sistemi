@@ -1,0 +1,58 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+
+@model List<TBL_URUN>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">Products </h2>
+
+<table class="table table-bordered">
+
+
+    <thead>
+        <tr>
+            <th>PRODUCT ID</th>
+            <th>PRODUCT NAME</th>
+            <th>PRODUCT BRAND</th>
+            <th>PRODUCT INVENTORY</th>
+            <th>BUYING PRICE</th>
+            <th>SALES PRICE</th>
+            <th>CATEGORY NAME</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.id</td>
+                <td>@item.urunadi</td>
+                <td>@item.urunmarka</td>
+                <td>@item.stok</td>
+                <td>@item.alisfiyat</td>
+                <td>@item.satisfiyat</td>
+                <td>@item.TBL_KATEGORI.kategoriad</td>
+                <td>@item.status</td>
+                <td><a href="/Product/DeleteProduct/@item.id" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/Product/ActiveProduct/@item.id" class="btn btn-success">ACTIVE</a></td>
+                <td><a href="/Product/UpdateProduct/@item.id" class="btn btn-warning">UPDATE</a></td>
+
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+<a href="/Product/NewProduct" class="btn btn-success">ADD NEW PRODUCT</a>
+
+
