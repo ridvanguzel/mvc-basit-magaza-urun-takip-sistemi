@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RG_MAGAZASTOKYONETIMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kullaniciadi" Type="varchar" MaxLength="20" />
+          <Property Name="sifre" Type="varchar" MaxLength="30" />
+        </EntityType>
         <EntityType Name="TBL_KATEGORI">
           <Key>
             <PropertyRef Name="id" />
@@ -106,6 +114,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RG_MAGAZASTOKYONETIMModelStoreContainer">
+          <EntitySet Name="TBL_ADMIN" EntityType="Self.TBL_ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_KATEGORI" EntityType="Self.TBL_KATEGORI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_MUSTERI" EntityType="Self.TBL_MUSTERI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_PERSONAL" EntityType="Self.TBL_PERSONAL" Schema="dbo" store:Type="Tables" />
@@ -262,7 +271,16 @@
             <End Role="TBL_URUN" EntitySet="TBL_URUN" />
             <End Role="TBL_SATISLAR" EntitySet="TBL_SATISLAR" />
           </AssociationSet>
+          <EntitySet Name="TBL_ADMIN" EntityType="RG_MAGAZASTOKYONETIMModel.TBL_ADMIN" />
         </EntityContainer>
+        <EntityType Name="TBL_ADMIN">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kullaniciadi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -323,6 +341,15 @@
                 <ScalarProperty Name="alisfiyat" ColumnName="alisfiyat" />
                 <ScalarProperty Name="satisfiyat" ColumnName="satisfiyat" />
                 <ScalarProperty Name="kategoriid" ColumnName="kategoriid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_ADMIN">
+            <EntityTypeMapping TypeName="RG_MAGAZASTOKYONETIMModel.TBL_ADMIN">
+              <MappingFragment StoreEntitySet="TBL_ADMIN">
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

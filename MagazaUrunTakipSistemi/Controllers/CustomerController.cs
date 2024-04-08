@@ -13,6 +13,8 @@ namespace MagazaUrunTakipSistemi.Controllers
     {
         // GET: Customer
         RG_MAGAZASTOKYONETIMEntities db = new RG_MAGAZASTOKYONETIMEntities();
+
+        [Authorize]
         public ActionResult Customer(int  sayfa = 1) // sayfamızın hangi sayfadan başlayacağını belirleriz
         {
 

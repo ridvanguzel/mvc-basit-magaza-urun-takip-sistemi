@@ -30,5 +30,6 @@ namespace MagazaUrunTakipSistemi.Models.Entity
         public virtual DbSet<TBL_PERSONAL> TBL_PERSONAL { get; set; }
         public virtual DbSet<TBL_SATISLAR> TBL_SATISLAR { get; set; }
         public virtual DbSet<TBL_URUN> TBL_URUN { get; set; }
+        public virtual DbSet<TBL_ADMIN> TBL_ADMIN { get; set; }
     }
 }

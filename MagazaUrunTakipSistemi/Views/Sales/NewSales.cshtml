@@ -1,0 +1,36 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@model TBL_SATISLAR
+@{
+    ViewBag.Title = "NewSales";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">New Sales</h2>
+
+
+<form method="post" class="form-group mt-4">
+
+
+    <label>Product Name : </label>
+    @*@Html.TextBoxFor(x => x.urun, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.TBL_URUN.id, (List<SelectListItem>)ViewBag.urundrop, new { @class = "form-control" })
+
+    <label>Sales Staff : </label>
+    @*@Html.TextBoxFor(x => x.personal, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.TBL_PERSONAL.id, (List<SelectListItem>)ViewBag.personaldrop, new { @class = "form-control" })
+
+    <label>Customer : </label>
+    @*@Html.TextBoxFor(x => x.musteri, new { @class = "form-control" })*@
+    @Html.DropDownListFor(x => x.TBL_MUSTERI.id, (List<SelectListItem>)ViewBag.musteridrop, new { @class = "form-control" })
+
+    <label>Product Sales Price : </label>
+    @Html.TextBoxFor(x => x.fiyat, new { @class = "form-control" })
+
+
+
+    <button class="mt-5 btn btn-success" style="margin-top:16px">Make a Sale</button>
+
+</form>
+
+
+

@@ -14,6 +14,7 @@
         <AssociationConnector Association="RG_MAGAZASTOKYONETIMModel.FK_TBL_SATISLAR_TBL_MUSTERI" ManuallyRouted="false" />
         <AssociationConnector Association="RG_MAGAZASTOKYONETIMModel.FK_TBL_SATISLAR_TBL_PERSONAL" ManuallyRouted="false" />
         <AssociationConnector Association="RG_MAGAZASTOKYONETIMModel.FK_TBL_SATISLAR_TBL_URUN" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RG_MAGAZASTOKYONETIMModel.TBL_ADMIN" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

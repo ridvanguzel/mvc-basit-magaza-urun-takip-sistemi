@@ -1,0 +1,49 @@
+﻿@using MagazaUrunTakipSistemi.Models.Entity;
+@model List<TBL_SATISLAR>
+@{
+    ViewBag.Title = "Sales";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mt-3">SATIŞLAR</h2>
+
+<table class="table table-bordered">
+
+
+    <thead>
+        <tr>
+            <th>SALES ID</th>
+            <th>PRODUCT</th>
+            <th>PERSONAL</th>
+            <th>CUSTOMER</th>
+            <th>PRICE</th>
+            <th>DATE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.id</td>
+                <td>@item.TBL_URUN.urunadi</td>
+                <td>@item.TBL_PERSONAL.personalad</td>
+                <td>@item.TBL_MUSTERI.musteriadi @item.TBL_MUSTERI.musterisoyadi</td>
+                <td>@item.fiyat</td>
+                <td>@item.tarih</td>   
+            </tr>
+        }
+    </tbody>
+
+
+
+</table>
+
+<a href="/Sales/NewSales" class="btn btn-success">NEW SALES</a>
+
+
+

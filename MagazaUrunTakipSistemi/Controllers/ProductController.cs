@@ -12,12 +12,38 @@ namespace MagazaUrunTakipSistemi.Controllers
         // GET: Product
 
         RG_MAGAZASTOKYONETIMEntities db = new RG_MAGAZASTOKYONETIMEntities();
-        public ActionResult Products()
+        public ActionResult Products(string p)
         {
             //Sadece durumu true olan ürünleri gösterir
-            //var product = db.TBL_URUN.Where(x => x.status == true).ToList();
-            var product = db.TBL_URUN.ToList();
-            return View(product);
+            //var product = db.TBL_URUN.Where(x => x.status == true).ToList(); // durumu tru olanlar için listeleme işlemi
+            //var product = db.TBL_URUN.ToList(); //urunlerımızın hepsini listelememize yardımcı olur.
+            //return View(product)
+            //;
+            //ARAMA İŞLEMİ İÇİN İLK YÖNTEM
+
+            //var product = db.TBL_URUN.Where(x=> x.status == true);
+            //if (!string.IsNullOrEmpty(p))
+            //{
+            //    product = product.Where(x => x.urunadi.Contains(p) && x.status == true);
+            //}
+            //return View(product.ToList());
+
+
+            //ARAMA İŞLEMİ İÇİN İKİNCİ YÖNTEM
+
+            //var product = from x in db.TBL_URUN select x;
+            //if (!string.IsNullOrEmpty(p))
+            //{
+            //    product = product.Where(x => x.urunadi.Contains(p) && x.status == true);
+            //}
+            //return View(product.ToList());
+            // ARAMA İŞLEMİ İÇİN ÜÇÜNCÜ YÖNTEM
+            var product = from x in db.TBL_URUN select x;
+            if (!string.IsNullOrEmpty(p))
+            {
+                product = product.Where(x => x.urunadi.Contains(p));
+            }
+            return View(product.ToList());
         }
 
         [HttpGet]
